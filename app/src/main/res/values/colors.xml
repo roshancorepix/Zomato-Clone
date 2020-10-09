@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F04F5F</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#000000</color>
+    <color name="statusBarColor">#F8F8F8</color>
+    <color name="loginBackground">#57FFECF7</color>
+    <color name="lightColorPrimary">#80F04F5F</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="transparentWhite">#50FFFFFF</color>
+    <color name="darkGrayFont">#6A6A6A</color>
+    <color name="lightDarkGray">#b5b5b5</color>
+    <color name="border_stroke_color">#D2D2D2</color>
+    <color name="darkGrayBackground">#99000000</color>
+
+</resources>

@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Zomato Clone</string>
+    <string name="todo">TODO</string>
+    <string name="skip">Skip</string>
+    <string name="continu_with_facebook">Continu with Facebook</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="continue_with_email">Continue with Email</string>
+    <string name="by_continuing_you_agree_to_our">By continuing, you agree to our</string>
+    <string name="terms_of_service">Terms of Service</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="content_policy">Content Policy</string>
+
+    <string name="facebook_app_id">788406951974980</string>
+    <string name="fb_login_protocol_scheme">fb788406951974980</string>
+    <string name="hi_nice_to_meet_you">Hi, nice to meet you!</string>
+    <string name="set_your_location_to_start_exploring_restaurants_around_you">Set your location to start exploring restaurants around you</string>
+    <string name="set_your_location_manually">Set your location manually</string>
+    <string name="search_location">Search location</string>
+    <string name="search_icon">search_icon</string>
+    <string name="close_button">close button</string>
+    <string name="search_for_your_location">Search for your location...</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="use_current_location">Use current location</string>
+    <string name="we_only_access_your_location_while_you_are_using_the_app_to_improve_your_experience">We only access your location while you are using the app to improve your experience.</string>
+    <string name="go_to">GO TO</string>
+    <string name="settings">SETTINGS</string>
+    <string name="location_permission_message"><![CDATA[It looks like you have turned off permissions required for this feature. it can be enable under Phone <br/> Settings > Apps > Zomato Clone > Permissions]]></string>
+</resources>

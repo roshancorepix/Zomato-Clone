@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
+    android:paddingTop="@dimen/padding_20"
+    android:paddingLeft="@dimen/padding_20"
+    android:paddingRight="@dimen/padding_20"
+    android:paddingBottom="@dimen/padding_10">
+
+    <TextView
+        android:id="@+id/textMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/size_12"
+        android:letterSpacing="0.04"
+        android:text="@string/location_permission_message"
+        android:textColor="@color/colorAccent"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_button_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textMsg"
+        android:background="@drawable/layout_background"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_alignParentEnd="true"
+        android:paddingTop="@dimen/padding_10"
+        android:paddingBottom="@dimen/padding_10"
+        android:paddingRight="@dimen/padding_30"
+        android:paddingLeft="@dimen/padding_30">
+
+        <TextView
+            android:id="@+id/tv_go_to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/go_to"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/size_15"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/tv_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_go_to"
+            android:textSize="@dimen/size_15"
+            android:text="@string/settings"
+            android:textColor="@color/colorPrimary"/>
+    </RelativeLayout>
+
+</RelativeLayout>
