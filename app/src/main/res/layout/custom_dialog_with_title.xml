@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background"
+    android:paddingTop="@dimen/padding_20"
+    android:paddingLeft="@dimen/padding_20"
+    android:paddingRight="@dimen/padding_20"
+    android:paddingBottom="@dimen/padding_10">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/location_permission_denied"
+        android:textSize="@dimen/size_15"
+        android:textColor="@color/colorAccent"/>
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/size_12"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_below="@id/tv_title"
+        android:text="@string/deny_message"
+        android:textColor="@color/colorAccent"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_button_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_message"
+        android:background="@drawable/layout_background"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_alignParentEnd="true"
+        android:paddingTop="@dimen/padding_10"
+        android:paddingBottom="@dimen/padding_10"
+        android:paddingRight="@dimen/padding_10"
+        android:paddingLeft="@dimen/padding_10">
+
+        <TextView
+            android:id="@+id/tv_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/retry"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/size_15"
+            android:textColor="@color/colorPrimary"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_button_i_am_sure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_message"
+        android:layout_toStartOf="@id/rl_button_retry"
+        android:background="@drawable/layout_background"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_marginRight="@dimen/margin_5"
+        android:paddingTop="@dimen/padding_10"
+        android:paddingBottom="@dimen/padding_10"
+        android:paddingRight="@dimen/padding_10"
+        android:paddingLeft="@dimen/padding_10">
+
+        <TextView
+            android:id="@+id/tv_i_am_sure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/i_m_sure"
+            android:layout_centerHorizontal="true"
+            android:textSize="@dimen/size_15"
+            android:textColor="@color/colorPrimary"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

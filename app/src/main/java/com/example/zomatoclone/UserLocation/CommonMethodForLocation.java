@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.ResultReceiver;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -26,6 +27,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.example.zomatoclone.R;
 import com.example.zomatoclone.Service.FetchAddressIntentService;
@@ -79,15 +81,12 @@ public class CommonMethodForLocation extends Activity {
             locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
             if (ActivityCompat.checkSelfPermission((Activity)context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission((Activity)context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                Log.e(TAG,"Permission not granted");
                 // location permission has not been granted.
                 // In an educational UI, explain to the user why your app requires this
                 // permission for a specific feature to behave as expected. In this UI,
                 // include a "cancel" or "no thanks" button that allows the user to
                 // continue using your app without granting the permission.
-                if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.ACCESS_FINE_LOCATION)) {
-                    // Dialog
-                }
-
                 // You can directly ask for the permission.
                 // The registered ActivityResultCallback gets the result of this request.
                 ActivityCompat.requestPermissions((Activity)context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, Util.REQUEST_LOCATION);
@@ -197,6 +196,40 @@ public class CommonMethodForLocation extends Activity {
                 Log.e(TAG, "You Click on button");
             }
         });
+        dialog.show();
+        dialog.getWindow().setAttributes(lp);
+    }
+
+    public void showAlertWithTitle(Context context, String title, String message){
+        final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.custom_dialog_with_title);
+        dialog.setCancelable(false);
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        TextView textTitle = dialog.findViewById(R.id.tv_title);
+        TextView textMessage = dialog.findViewById(R.id.tv_message);
+        RelativeLayout sureButton = dialog.findViewById(R.id.rl_button_i_am_sure);
+        RelativeLayout retry = dialog.findViewById(R.id.rl_button_retry);
+        textTitle.setText(title);
+        textMessage.setText(message);
+        sureButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.cancel();
+            }
+        });
+
+        retry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.cancel();
+                accessLocation();
+            }
+        });
+
         dialog.show();
         dialog.getWindow().setAttributes(lp);
     }

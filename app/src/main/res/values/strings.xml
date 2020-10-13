@@ -26,4 +26,8 @@
     <string name="go_to">GO TO</string>
     <string name="settings">SETTINGS</string>
     <string name="location_permission_message"><![CDATA[It looks like you have turned off permissions required for this feature. it can be enable under Phone <br/> Settings > Apps > Zomato Clone > Permissions]]></string>
+    <string name="location_permission_denied">Location Permission Denied</string>
+    <string name="retry">RETRY</string>
+    <string name="i_m_sure">I\'M SURE</string>
+    <string name="deny_message">Zomato clone uses this permission to detect your current location and show you great restaurants around you. It also enables you to get turn-by-turn driving directions to restaurants. Are you sure you want to deny this permission?</string>
 </resources>

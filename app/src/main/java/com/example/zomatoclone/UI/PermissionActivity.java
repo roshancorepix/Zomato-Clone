@@ -2,8 +2,13 @@ package com.example.zomatoclone.UI;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -26,7 +31,7 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
 
     private final String TAG = getClass().getSimpleName();
     private boolean isOpen = false;
-    private ProgressBar locationProgressbar;
+    private ProgressBar locationProgressbar, bottomSheetProgressBar;
     private Button useCurrentLocationButton;
     private TextView textManually;
     private RelativeLayout bottomSheetUseLocation;
@@ -45,9 +50,10 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
 
         init();
 
-        CommonMethodForLocation c = new CommonMethodForLocation();
+        commonMethodForLocation = new CommonMethodForLocation(PermissionActivity.this, locationProgressbar);
+       /* CommonMethodForLocation c = new CommonMethodForLocation();
         c.showAlert(this, String.valueOf(Html.fromHtml(getString(R.string.location_permission_message))));
-
+*/
         mBottomSheetBehavior = BottomSheetBehavior.from(findViewById(R.id.bottom_sheet));
         mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
         mBottomSheetBehavior.setBottomSheetCallback(new BottomSheetCallback(mBottomSheetBehavior));
@@ -95,7 +101,7 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
 
             case R.id.rl_use_current_location:
                 // Access User's Location
-                commonMethodForLocation = new CommonMethodForLocation(PermissionActivity.this, locationProgressbar);
+                bottomSheetProgressBar.setVisibility(View.VISIBLE);
                 commonMethodForLocation.accessLocation();
                 break;
 
@@ -120,11 +126,12 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
         bottomSheetUseLocation = findViewById(R.id.rl_use_current_location);
         backgroundView = findViewById(R.id.bg);
         closeBottomSheetButton = findViewById(R.id.iv_close_bottom_sheet);
+        bottomSheetProgressBar = findViewById(R.id.bottom_sheet_progressbar);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        Log.e(TAG,"onRequestPermissionsResult");
+        Log.e(TAG, "onRequestPermissionsResult");
         if (requestCode == Util.REQUEST_LOCATION) {
             // check if the only required permission has been granted
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -134,8 +141,19 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
                 commonMethodForLocation.enableLocationSetting();
                 commonMethodForLocation.accessLocation();
 
-            } else {
-                Toast.makeText(this, "Permission was not granted", Toast.LENGTH_SHORT).show();
+            }else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (!shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
+                    // Dialog
+                    if (isOpen) {
+                        Log.e(TAG, "Deny & don't ask again");
+                        commonMethodForLocation.showAlert(this, String.valueOf(Html.fromHtml(getResources().getString(R.string.location_permission_message))));
+                    }
+                } else {
+                    if (isOpen) {
+                        commonMethodForLocation.showAlertWithTitle(this,getResources().getString(R.string.location_permission_denied),getResources().getString(R.string.deny_message));
+                        Log.e(TAG, "Deny");
+                    }
+                }
             }
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -143,12 +161,11 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
     }
 
 
-
     @Override
     public void onBackPressed() {
-        if (isOpen){
+        if (isOpen) {
             closeBottomSheet();
-        }else {
+        } else {
             super.onBackPressed();
         }
     }
