@@ -1,6 +1,7 @@
 package com.example.zomatoclone.UserLocation;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Address;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import com.example.zomatoclone.SharedPrefrence.UserLocationPreference;
+import com.example.zomatoclone.UI.UserLocationMapActivity;
 import com.example.zomatoclone.Utils.Util;
 
 public class AddressResultReceiver extends ResultReceiver {
@@ -30,6 +32,7 @@ public class AddressResultReceiver extends ResultReceiver {
             progressBar.setVisibility(View.INVISIBLE);
             UserLocationPreference.init(context);
             UserLocationPreference.setUserLocationAddress(address.getAddressLine(0));
+            context.startActivity(new Intent(context, UserLocationMapActivity.class));
             Log.e(TAG,"Address: "+address.getAddressLine(0));
         }else {
             Log.e(TAG,"Error: "+resultCode);

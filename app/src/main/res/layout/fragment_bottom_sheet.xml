@@ -1,15 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_sheet"
+    style="@style/DialogStyle"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="668dp"
     android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
     tools:context=".UI.Fragments.BottomSheetFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginTop="@dimen/margin_20"
+        android:layout_marginRight="@dimen/margin_15">
 
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:fontFamily="@font/kumbh_sans_regular"
+            android:text="@string/search_location"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/size_18"
+            tools:ignore="RelativeOverlap" />
+
+        <ImageView
+            android:id="@+id/iv_close_bottom_sheet"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/todo"
+            android:padding="@dimen/padding_5"
+            android:src="@drawable/ic_cancel"
+            app:tint="@color/darkGrayFont" />
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_5"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_marginRight="@dimen/margin_5"
+        app:cardCornerRadius="4dp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/search_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@null"
+                android:contentDescription="@string/search_icon"
+                android:padding="@dimen/padding_12"
+                android:src="@drawable/ic_search" />
+
+            <AutoCompleteTextView
+                android:id="@+id/search_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                android:layout_toStartOf="@id/text_cancel_button"
+                android:layout_toEndOf="@id/search_icon"
+                android:background="@null"
+                android:fontFamily="@font/kumbh_sans_regular"
+                android:hint="@string/search_for_your_location"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/lightDarkGray"
+                android:textCursorDrawable="@drawable/custom_cursor"
+                android:textSize="@dimen/size_15" />
+
+            <ImageView
+                android:id="@+id/text_cancel_button"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin_12"
+                android:layout_marginRight="@dimen/margin_12"
+                android:contentDescription="@string/todo"
+                android:padding="@dimen/padding_5"
+                android:src="@drawable/ic_cancel"
+                android:visibility="invisible"
+                app:tint="@color/darkGrayFont" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:id="@+id/rl_use_current_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-4dp"
+        android:background="@drawable/layout_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/padding_10">
+
+        <ImageView
+            android:id="@+id/iv_location_img"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_5"
+            android:layout_marginRight="@dimen/margin_10"
+            android:layout_marginBottom="@dimen/margin_5"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_target" />
+
+        <TextView
+            android:id="@+id/tv_current_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/iv_location_img"
+            android:fontFamily="@font/kumbh_sans_regular"
+            android:text="@string/use_current_location"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/size_18" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginLeft="@dimen/margin_15"
+        android:layout_marginRight="@dimen/margin_15"
+        android:background="@color/border_stroke_color" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/bottom_sheet_progressbar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin_30"
+            android:background="@drawable/circle_progress_foreground"
+            android:indeterminateTint="@color/colorPrimary"
+            android:visibility="invisible" />
+
+    </FrameLayout>
+</LinearLayout>

@@ -8,11 +8,13 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.ResultReceiver;
+import android.provider.Settings;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
@@ -82,16 +84,10 @@ public class CommonMethodForLocation extends Activity {
 
             if (ActivityCompat.checkSelfPermission((Activity)context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission((Activity)context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 Log.e(TAG,"Permission not granted");
-                // location permission has not been granted.
-                // In an educational UI, explain to the user why your app requires this
-                // permission for a specific feature to behave as expected. In this UI,
-                // include a "cancel" or "no thanks" button that allows the user to
-                // continue using your app without granting the permission.
-                // You can directly ask for the permission.
-                // The registered ActivityResultCallback gets the result of this request.
                 ActivityCompat.requestPermissions((Activity)context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, Util.REQUEST_LOCATION);
             }else {
                 progressBar.setVisibility(View.VISIBLE);
+                enableLocationSetting();
                 LocationServices.getFusedLocationProviderClient(context)
                         .requestLocationUpdates(locationRequest, new LocationCallback() {
                             @Override
@@ -161,9 +157,7 @@ public class CommonMethodForLocation extends Activity {
                             try {
                                 ResolvableApiException exception = (ResolvableApiException) e;
                                 exception.startResolutionForResult((Activity) context, Util.LOCATION_SETTING_CODE);
-                            } catch (IntentSender.SendIntentException ex) {
-                                ex.printStackTrace();
-                            } catch (ClassCastException ex) {
+                            } catch (IntentSender.SendIntentException | ClassCastException ex) {
                                 ex.printStackTrace();
                             }
                             break;
@@ -176,11 +170,12 @@ public class CommonMethodForLocation extends Activity {
         });
     }
 
-    public void showAlert(Context context, String message)
+    public void showAlert(Context context, String message, final ProgressBar progressBar)
     {
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.custom_dialog);
+        dialog.setCancelable(false);
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.MATCH_PARENT;
@@ -193,6 +188,9 @@ public class CommonMethodForLocation extends Activity {
             @Override
             public void onClick(View view)
             {
+                dialog.cancel();
+                openAppSetting();
+                progressBar.setVisibility(View.INVISIBLE);
                 Log.e(TAG, "You Click on button");
             }
         });
@@ -200,7 +198,7 @@ public class CommonMethodForLocation extends Activity {
         dialog.getWindow().setAttributes(lp);
     }
 
-    public void showAlertWithTitle(Context context, String title, String message){
+    public void showAlertWithTitle(Context context, String title, String message, final ProgressBar progressBar){
         final Dialog dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.custom_dialog_with_title);
@@ -218,6 +216,7 @@ public class CommonMethodForLocation extends Activity {
         sureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressBar.setVisibility(View.INVISIBLE);
                 dialog.cancel();
             }
         });
@@ -226,11 +225,19 @@ public class CommonMethodForLocation extends Activity {
             @Override
             public void onClick(View view) {
                 dialog.cancel();
+                progressBar.setVisibility(View.INVISIBLE);
                 accessLocation();
             }
         });
 
         dialog.show();
         dialog.getWindow().setAttributes(lp);
+    }
+
+    private void openAppSetting(){
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", context.getPackageName(), null);
+        intent.setData(uri);
+        context.startActivity(intent);
     }
 }
