@@ -10,6 +10,8 @@ public class UserLocationPreference {
     private static final String USER_LOCATION_LATITUDE = "userLocationLatitude";
     private static final String USER_LOCATION_LONGITUDE = "userLocationLongitude";
     private static final String USER_LOCATION_ADDRESS = "userLocationAddress";
+    private static final String USER_AREA = "userAddressArea";
+    private static final String USER_SUB_LOCALITY = "userSubLocality";
 
     public UserLocationPreference() {
     }
@@ -47,5 +49,25 @@ public class UserLocationPreference {
 
     public static String getUserLocationAddress(){
         return preferences.getString(USER_LOCATION_ADDRESS, null);
+    }
+
+    public static void setUserArea(String area) {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(USER_AREA, area);
+        editor.commit();
+    }
+
+    public static String getUserArea() {
+        return preferences.getString(USER_AREA, null);
+    }
+
+    public static void setUserSubLocality(String subLocality) {
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString(USER_SUB_LOCALITY, subLocality);
+        editor.commit();
+    }
+
+    public static String getUserSubLocality(){
+        return preferences.getString(USER_SUB_LOCALITY, null);
     }
 }

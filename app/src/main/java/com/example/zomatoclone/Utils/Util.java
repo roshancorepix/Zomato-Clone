@@ -17,4 +17,8 @@ public class Util {
     public static final int SUCCESS_RESULT = 1;
     public static final int FAILURE_RESULT = 0;
 
+
+    // Fragment TAG
+    public static final String BOTTOM_SHEET_TAG = "BottomSheetFragment";
+
 }

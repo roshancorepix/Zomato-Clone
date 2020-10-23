@@ -11,8 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+
 import com.example.zomatoclone.Interface.BottomSheetCloseListener;
 import com.example.zomatoclone.R;
+import com.example.zomatoclone.UI.PermissionActivity;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -20,7 +24,9 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
 
     private static final String TAG = "BottomSheetFragment";
     private ImageView closeButton;
+    private RelativeLayout currentLocationButton;
     private BottomSheetCloseListener bottomSheetCloseListener;
+    public ProgressBar bottomSheetProgressbar;
     public BottomSheetFragment() {
         // Required empty public constructor
     }
@@ -36,17 +42,23 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
 
         // button click event
         closeButton.setOnClickListener(this);
+        currentLocationButton.setOnClickListener(this);
         return view;
     }
 
     private void bindId(View v) {
         closeButton = v.findViewById(R.id.iv_close_bottom_sheet);
+        currentLocationButton = v.findViewById(R.id.rl_use_current_location);
+        bottomSheetProgressbar = v.findViewById(R.id.bottom_sheet_progressbar);
     }
 
     private void closeBottomSheet(){
         dismiss();
     }
 
+    public void changProgressbarVisibility(){
+        bottomSheetProgressbar.setVisibility(View.INVISIBLE);
+    }
     @Override
     public void onStart() {
         super.onStart();
@@ -76,6 +88,11 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
         switch (view.getId()){
             case R.id.iv_close_bottom_sheet:
                 closeBottomSheet();
+                break;
+
+            case R.id.rl_use_current_location:
+                bottomSheetProgressbar.setVisibility(View.VISIBLE);
+                ((PermissionActivity)getActivity()).checkPermission();
                 break;
         }
     }
