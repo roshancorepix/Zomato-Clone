@@ -13,6 +13,8 @@
     <dimen name="padding_20">20dp</dimen>
     <dimen name="padding_5">5dp</dimen>
     <dimen name="padding_15">15dp</dimen>
+    <dimen name="padding_30">30dp</dimen>
+    <dimen name="padding_18">18dp</dimen>
 
 
     <!-- Margin -->
@@ -36,6 +38,8 @@
     <dimen name="margin_28">28dp</dimen>
     <dimen name="margin_35">35dp</dimen>
     <dimen name="margin_32">32dp</dimen>
+    <dimen name="margin_2">2dp</dimen>
+    <dimen name="margin_3">3dp</dimen>
 
 
     <!-- TextSize -->
@@ -47,9 +51,8 @@
     <dimen name="size_14">14sp</dimen>
     <dimen name="size_20">20sp</dimen>
     <dimen name="size_10">10sp</dimen>
-    <dimen name="padding_30">30dp</dimen>
-    <dimen name="padding_18">18dp</dimen>
-    <dimen name="margin_2">2dp</dimen>
+
+
 
 
 </resources>

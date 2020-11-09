@@ -91,6 +91,7 @@ public class BottomSheetFragment extends BottomSheetDialogFragment implements Vi
                 break;
 
             case R.id.rl_use_current_location:
+                Log.e(TAG,"bottomsheet button");
                 bottomSheetProgressbar.setVisibility(View.VISIBLE);
                 ((PermissionActivity)getActivity()).checkPermission();
                 break;

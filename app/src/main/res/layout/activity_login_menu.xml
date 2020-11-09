@@ -113,6 +113,7 @@
             app:cardUseCompatPadding="true">
 
             <RelativeLayout
+                android:id="@+id/rl_google_sigin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ractengle_border"

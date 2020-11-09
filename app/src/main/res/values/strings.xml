@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Zomato Clone</string>
-    <string name="google_maps_key">AIzaSyAJKPcG_XvI_32Ec4Ndzp_sFE29pswhgxk</string>
+    <string name="google_maps_key">AIzaSyBUJ3ZKseydEkl1iq7cEXbiAjMkfrEEt48</string>
     <string name="todo">TODO</string>
     <string name="skip">Skip</string>
     <string name="continu_with_facebook">Continu with Facebook</string>
@@ -31,4 +31,10 @@
     <string name="retry">RETRY</string>
     <string name="i_m_sure">I\'M SURE</string>
     <string name="deny_message">Zomato clone uses this permission to detect your current location and show you great restaurants around you. It also enables you to get turn-by-turn driving directions to restaurants. Are you sure you want to deny this permission?</string>
+    <string name="select_delivery_location">Select delivery location</string>
+    <string name="your_location">YOUR LOCATION</string>
+    <string name="change">CHANGE</string>
+    <string name="confirm_location">Confirm location</string>
+    <string name="your_food_will_be_delivered_hear">Your food will be delivered hear</string>
+    <string name="please_place_the_pin_accurately_on_the_map">Please place the pin accurately on the map</string>
 </resources>

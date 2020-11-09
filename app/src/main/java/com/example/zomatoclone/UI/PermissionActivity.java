@@ -133,8 +133,6 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
                             // Get users current location Address
                             getUsersAddressFromCurrentLatLng(currentLatLng);
                             Log.e(TAG, "Latitude: " + currentLatLng.latitude + " , " + "Longitude: " + currentLatLng.longitude);
-
-
                         }
                     }
                 }
@@ -152,7 +150,6 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
                 locationCallback,
                 Looper.myLooper()
         );
-
 
     }
 
@@ -271,6 +268,7 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.e(TAG,"onActivityResult");
         if (requestCode == Util.LOCATION_SETTING_CODE) {
             switch (resultCode) {
                 case Activity.RESULT_OK:
@@ -299,15 +297,9 @@ public class PermissionActivity extends AppCompatActivity implements View.OnClic
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        Log.e(TAG,"onResume");
-        currentLatLng = null;
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.e(TAG,"onPause");
+    public void onBackPressed() {
+        Log.e(TAG,"onBackPressed");
+        this.finish();
+        super.onBackPressed();
     }
 }
